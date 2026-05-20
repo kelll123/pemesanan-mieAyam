@@ -1,0 +1,12 @@
+:root {
+  --primary-red: #c8102e; /* Warna dominan tombol login & order [cite: 21, 24] */
+  --bg-cream: #fdf5eb;   /* Warna background Figma */
+  --text-dark: #333;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-cream);
+  color: var(--text-dark);
+}
