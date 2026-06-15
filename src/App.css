@@ -1134,3 +1134,1500 @@ body {
     width: 100%;
   }
 }
+
+/* Atur container utama navbar agar membagi ruang secara merata */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Hilangkan margin bawaan agar ul tidak mengacaukan flexbox */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+/* Satukan input cari dan tombol login di ujung kanan */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Desain Tombol Login Baru di Ujung Kanan */
+.nav-login-btn {
+  background-color: #a91f15;
+  /* Warna jingga khas Niki Eco */
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(255, 102, 0, 0.2);
+}
+
+.nav-login-btn:hover {
+  background-color: #e00000;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(255, 102, 0, 0.3);
+}
+
+/* Gaya tombol saat halaman login sedang aktif */
+.active-login-btn {
+  background-color: #2e7d32;
+  /* Berubah menjadi hijau mengikuti tema tombol login utama */
+  box-shadow: 0 2px 6px rgba(46, 125, 50, 0.2);
+}
+
+/* Container Utama Loading */
+.mie-loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Pembungkus Animasi */
+.mie-animation-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+/* Efek Animasi Mangkuk Mie Ayam Melompat/Bergetar */
+.mie-icon {
+  display: inline-block;
+  font-size: 64px;
+  /* Ukuran emoji mie ayam */
+  animation: mieBounce 1.2s infinite ease-in-out;
+}
+
+/* Efek Uap Panas di Atas Mangkuk */
+.mie-steam {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  color: #ff6600;
+  opacity: 0;
+  animation: steamRise 1.2s infinite linear;
+}
+
+/* Teks Judul Memuat */
+.mie-loading-container h3 {
+  margin: 10px 0 5px 0;
+  color: #333333;
+  font-size: 20px;
+}
+
+/* Teks Sub-judul */
+.mie-loading-container p {
+  margin: 0;
+  color: #888888;
+  font-size: 14px;
+}
+
+/* --- KEYFRAMES LOGIKA ANIMASI GERAKAN --- */
+
+/* Keyframe Mangkuk Melompat */
+@keyframes mieBounce {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-15px) scale(1.05);
+    /* Melompat ke atas dan membesar sedikit */
+  }
+}
+
+/* Keyframe Uap Mengepul Hilang Timbul */
+@keyframes steamRise {
+  0% {
+    top: -10px;
+    opacity: 0;
+    transform: translateX(-50%) scale(0.8);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: translateX(-40%) scale(1.1);
+  }
+
+  100% {
+    top: -35px;
+    opacity: 0;
+    transform: translateX(-60%) scale(1.4);
+  }
+}
+
+/* --- LAYOUT HERO UTAMA --- */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 8%;
+  background-color: #faf8f5;
+  /* Warna latar belakang cream lembut */
+  gap: 40px;
+  overflow: hidden;
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 550px;
+}
+
+/* --- CONTAINER GAMBAR MIE AYAM (SISI KANAN) --- */
+.hero-image-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Style Gambar Mie Ayam */
+.main-hero-img {
+  width: 100%;
+  max-width: 480px;
+  /* Ukuran mangkuk mie yang pas dan proporsional */
+  height: auto;
+  border-radius: 50%;
+  /* Membuat gambar membulat sempurna seperti mangkuk */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  /* Efek bayangan tebal agar terlihat nyata */
+  object-fit: cover;
+  border: 8px solid #ffffff;
+  /* Bingkai putih tebal estetis */
+  z-index: 2;
+}
+
+/* Efek Cahaya/Uap Hangat di Belakang Mangkuk */
+.hero-steam-glow {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(255, 102, 0, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* --- LOGIKA ANIMASI BERGERAK (FLOATING EFFECT) --- */
+.floating-mie-anim {
+  animation: floatMieAyam 4s ease-in-out infinite;
+}
+
+@keyframes floatMieAyam {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(1deg);
+    /* Bergerak naik 15px dan miring 1 derajat halus */
+  }
+
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+/* --- RESPONSIVE MOBILE SCREEN --- */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column-reverse;
+    /* Gambar pindah ke atas saat dibuka di HP */
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .main-hero-img {
+    max-width: 320px;
+  }
+}
+
+/* Container pembungkus gambar di sisi kanan */
+.hero-image-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: none;
+  /* Pastikan tidak ada background lingkaran bawaan template */
+}
+
+/* Style Khusus Gambar Mie Ayam Asli */
+.main-hero-img {
+  width: 100%;
+  max-width: 420px;
+  /* Ukuran pas di layar */
+  height: 420px;
+  /* Dipaksa persegi agar saat border-radius 50% menjadi bulat sempurna */
+  border-radius: 50%;
+  object-fit: cover;
+  /* Memastikan gambar mie ayam tidak gepeng */
+  border: 6px solid #ffffff;
+  /* Bingkai putih estetik */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  /* Bayangan lembut */
+  z-index: 2;
+}
+
+/* Efek Animasi Melayang Naik-Turun Halus */
+.floating-mie-anim {
+  animation: floatMieAyam 3.5s ease-in-out infinite;
+}
+
+@keyframes floatMieAyam {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+    /* Melayang naik sejauh 12px */
+  }
+}
+
+/* --- POSISI DAN ANIMASI IKON DEKORATIF --- */
+.hero-image-container {
+  position: relative;
+}
+
+.floating-icon {
+  position: absolute;
+  font-size: 28px;
+  z-index: 3;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+/* Penempatan Posisi Masing-Masing Ikon */
+.icon-1 {
+  top: 10%;
+  left: 15%;
+  animation: floatSlow 4s ease-in-out infinite;
+}
+
+.icon-2 {
+  top: 5%;
+  right: 20%;
+  animation: spinSlow 8s linear infinite;
+}
+
+.icon-3 {
+  bottom: 20%;
+  left: 5%;
+  animation: floatFast 3s ease-in-out infinite;
+}
+
+.icon-4 {
+  bottom: 10%;
+  right: 15%;
+  animation: floatSlow 4.5s ease-in-out infinite;
+}
+
+.icon-5 {
+  top: 45%;
+  left: -8%;
+  animation: spinSlow 12s linear infinite;
+  font-size: 22px;
+}
+
+.icon-6 {
+  bottom: 50%;
+  right: -5%;
+  animation: floatFast 3.5s ease-in-out infinite;
+}
+
+/* Logika Animasi Variasi Gerakan */
+@keyframes floatSlow {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-12px) rotate(5deg);
+  }
+}
+
+@keyframes floatFast {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-8px) scale(1.1);
+  }
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================
+   LOADING SCREEN PREMIUM & RAMAI - MIE AYAM NIKI ECO
+   ========================================================== */
+
+/* Wrapper Utama Halaman Loading */
+.mie-loading-page-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #faf8f5;
+  /* Warna cream lembut hangat */
+  overflow: hidden;
+}
+
+/* Konten Tengah */
+.mie-loading-container {
+  position: relative;
+  text-align: center;
+  z-index: 10;
+  font-family: 'Poppins', sans-serif;
+}
+
+.mie-animation-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 25px;
+}
+
+/* Animasi Mangkuk Utama */
+.mie-icon {
+  display: inline-block;
+  font-size: 80px;
+  animation: mainBowlBounce 1.4s infinite ease-in-out;
+}
+
+/* Kepulan Uap Berlapis di Atas Mangkuk */
+.mie-steam-burst {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.mie-steam-burst span {
+  font-size: 24px;
+  color: #ff6600;
+  opacity: 0;
+}
+
+.mie-steam-burst span:nth-child(1) {
+  animation: steamRiseLayer 1.2s infinite linear 0s;
+}
+
+.mie-steam-burst span:nth-child(2) {
+  animation: steamRiseLayer 1.2s infinite linear 0.3s;
+}
+
+.mie-steam-burst span:nth-child(3) {
+  animation: steamRiseLayer 1.2s infinite linear 0.6s;
+}
+
+/* Teks Informatif */
+.mie-loading-container h3 {
+  font-size: 24px;
+  color: #2b2b2b;
+  margin: 10px 0;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.mie-loading-container p {
+  font-size: 14px;
+  color: #777777;
+  margin: 0 0 25px 0;
+}
+
+/* Bar Progress Pengisian di Bawah Teks */
+.loading-bar-wrapper {
+  width: 180px;
+  height: 6px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.loading-bar-progress {
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(90deg, #ff6600, #ffcc00);
+  border-radius: 10px;
+  animation: infiniteBarLoad 1.5s infinite ease-in-out;
+}
+
+/* ==========================================================
+   PARTIKEL DEKORASI LINGKUNGAN (YANG MEMBUAT RAMAI)
+   ========================================================== */
+.decor-item {
+  position: absolute;
+  font-size: 32px;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.08));
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Distribusi Posisi & Variasi Animasi Acak Tiap Item */
+.d1 {
+  top: 15%;
+  left: 15%;
+  animation: floatOrbit 5s infinite ease-in-out;
+}
+
+.d2 {
+  top: 20%;
+  right: 15%;
+  animation: floatOrbitReverse 6s infinite ease-in-out;
+}
+
+.d3 {
+  bottom: 20%;
+  left: 20%;
+  animation: floatOrbitReverse 5.5s infinite ease-in-out 0.5s;
+  font-size: 40px;
+}
+
+.d4 {
+  bottom: 25%;
+  right: 18%;
+  animation: floatOrbit 4.5s infinite ease-in-out 0.2s;
+}
+
+.d5 {
+  top: 45%;
+  left: 8%;
+  animation: floatOrbitReverse 7s infinite ease-in-out 1s;
+}
+
+.d6 {
+  top: 40%;
+  right: 8%;
+  animation: floatOrbit 6.5s infinite ease-in-out 0.3s;
+}
+
+.d7 {
+  bottom: 45%;
+  left: 45%;
+  animation: floatOrbit 4s infinite ease-in-out 0.7s;
+  font-size: 24px;
+  opacity: 0.7;
+}
+
+.d8 {
+  top: 8%;
+  left: 48%;
+  animation: floatOrbitReverse 5s infinite ease-in-out 0.4s;
+}
+
+.d9 {
+  bottom: 8%;
+  right: 45%;
+  animation: floatOrbit 5.8s infinite ease-in-out;
+  font-size: 28px;
+}
+
+/* Garis Uap Latar Belakang Estetis */
+.abstract-steam {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border: 4px dashed rgba(255, 102, 0, 0.06);
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  pointer-events: none;
+}
+
+.s-left {
+  top: 20%;
+  left: -50px;
+  animation: rotateSteamBg 20s linear infinite;
+}
+
+.s-right {
+  bottom: 15%;
+  right: -50px;
+  animation: rotateSteamBg 25s linear infinite reverse;
+}
+
+/* ==========================================================
+   LOGIKA TIMELINE ANIMASI (KEYFRAMES)
+   ========================================================== */
+
+@keyframes mainBowlBounce {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-16px) scale(1.03);
+  }
+}
+
+@keyframes steamRiseLayer {
+  0% {
+    transform: translateY(10px) scale(0.6);
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translateY(-30px) scale(1.3);
+    opacity: 0;
+  }
+}
+
+@keyframes infiniteBarLoad {
+  0% {
+    transform: translateX(-100%);
+    width: 30%;
+  }
+
+  50% {
+    width: 50%;
+  }
+
+  100% {
+    transform: translateX(200%);
+    width: 30%;
+  }
+}
+
+@keyframes floatOrbit {
+
+  0%,
+  100% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+  }
+
+  33% {
+    transform: translateY(-12px) translateX(6px) rotate(8deg);
+  }
+
+  66% {
+    transform: translateY(4px) translateX(-8px) rotate(-5deg);
+  }
+}
+
+@keyframes floatOrbitReverse {
+
+  0%,
+  100% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(15px) translateX(-10px) rotate(-12deg);
+  }
+}
+
+@keyframes rotateSteamBg {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* ==========================================================
+   DESAIN HALAMAN LOGIN MODERN & PREMIUM (NIKI ECO)
+   ========================================================== */
+
+/* Wrapper Latar Belakang Seluruh Halaman Login */
+.login-page-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #faf8f5;
+  /* Senada dengan warna cream beranda */
+  overflow: hidden;
+  padding: 20px;
+}
+
+/* Bola Cahaya Dekoratif di Latar Belakang */
+.login-bg-glow-1,
+.login-bg-glow-2 {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.12;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.login-bg-glow-1 {
+  background-color: #ff6600;
+  top: 10%;
+  left: 20%;
+}
+
+.login-bg-glow-2 {
+  background-color: #2e7d32;
+  bottom: 10%;
+  right: 20%;
+}
+
+/* Container Kartu Login Premium */
+.login-card-container {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 24px;
+  padding: 40px 35px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04), 0 5px 15px rgba(0, 0, 0, 0.02);
+  z-index: 5;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Header Kartu */
+.login-card-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login-avatar-icon {
+  font-size: 36px;
+  background: #f4f6f8;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin: 0 auto 15px auto;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.login-card-header h2 {
+  font-size: 24px;
+  color: #1a1a1a;
+  margin: 0 0 5px 0;
+  font-weight: 700;
+}
+
+.login-card-header p {
+  font-size: 13px;
+  color: #8c8c8c;
+  margin: 0;
+}
+
+/* Alert Eror jika Akun Salah */
+.login-error-alert {
+  background-color: #ffeef0;
+  color: #d32f2f;
+  padding: 12px 15px;
+  border-radius: 12px;
+  font-size: 13px;
+  margin-bottom: 20px;
+  border-left: 4px solid #d32f2f;
+  font-weight: 500;
+}
+
+/* Struktur Group Input Modern */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group-modern {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.input-group-modern label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4a4a4a;
+  padding-left: 2px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 15px;
+  font-size: 16px;
+  color: #a0a0a0;
+  pointer-events: none;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 14px 15px 14px 45px;
+  font-size: 14px;
+  background-color: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  color: #334155;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+/* Efek Fokus Input Berwarna Hijau Lembut */
+.input-wrapper input:focus {
+  background-color: #ffffff;
+  border-color: #2e7d32;
+  box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.1);
+}
+
+/* Tombol Submit Login Premium */
+.login-submit-btn {
+  background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+  color: #ffffff;
+  border: none;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
+}
+
+.login-submit-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(46, 125, 50, 0.3);
+}
+
+.login-submit-btn:active {
+  transform: translateY(1px);
+}
+
+/* Footer Kartu (Tombol Kembali) */
+.login-card-footer {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.back-to-store-link {
+  background: none;
+  border: none;
+  color: #ff6600;
+  /* Warna jingga khas brand toko */
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+.back-to-store-link:hover {
+  color: #e05500;
+  background-color: rgba(255, 102, 0, 0.05);
+}
+
+/* ==========================================================
+   DESAIN HALAMAN KURIR (DELIVERY LIST)
+   ========================================================== */
+
+.courier-page-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.courier-header {
+  text-align: left;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #edf2f7;
+  padding-bottom: 15px;
+}
+
+.courier-header h2 {
+  font-size: 24px;
+  color: #2d3748;
+  margin: 0 0 5px 0;
+}
+
+.courier-header p {
+  font-size: 14px;
+  color: #718096;
+  margin: 0;
+}
+
+/* Wrapper Kartu Tugas */
+.delivery-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Desain Kartu Tugas Kurir */
+.delivery-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  text-align: left;
+}
+
+.delivery-info h3 {
+  margin: 0 0 12px 0;
+  color: #1a202c;
+  font-size: 18px;
+}
+
+.delivery-info p {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #4a5568;
+}
+
+/* Lencana Status */
+.status-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px !important;
+}
+
+.badge-status {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.badge-status.siap_antar {
+  background-color: #feebc8;
+  color: #c05621;
+}
+
+.badge-status.dikirim {
+  background-color: #e2fbf5;
+  color: #00a3c4;
+}
+
+.badge-status.selesai {
+  background-color: #c6f6d5;
+  color: #22543d;
+}
+
+/* Container Tombol Aksi */
+.delivery-actions {
+  display: flex;
+  gap: 12px;
+  /* Membuat tombol berjarak renggang secara horizontal */
+}
+
+/* Base Style Tombol */
+.btn-action {
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 120px;
+}
+
+.btn-diantar {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.btn-diantar:hover:not(:disabled) {
+  background-color: #fde68a;
+}
+
+.btn-selesai {
+  background-color: #d1fae5;
+  color: #059669;
+}
+
+.btn-selesai:hover:not(:disabled) {
+  background-color: #bbf7d0;
+}
+
+/* Style jika tombol sedang mati/tidak bisa diklik */
+.btn-action:disabled {
+  background-color: #edf2f7;
+  color: #a0aec0;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Responsif untuk Layaran HP */
+@media (max-width: 768px) {
+  .delivery-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .delivery-actions {
+    width: 100%;
+  }
+
+  .btn-action {
+    flex: 1;
+  }
+}
+
+/* ==========================================================
+   DESAIN DASHBOARD ADMIN PREMIUM (NIKI ECO)
+   ========================================================== */
+
+.admin-panel-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Header Row */
+.admin-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px;
+  border-bottom: 2px solid #f0f4f8;
+  padding-bottom: 20px;
+  text-align: left;
+}
+
+.admin-header-row h2 {
+  font-size: 26px;
+  color: #1a202c;
+  margin: 0 0 5px 0;
+  font-weight: 700;
+}
+
+.admin-header-row p {
+  font-size: 14px;
+  color: #718096;
+  margin: 0;
+}
+
+.back-to-store-btn {
+  background-color: #4a5568;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.back-to-store-btn:hover {
+  background-color: #2d3748;
+}
+
+/* GRID CARDS DASHBOARD INTERNAL */
+.admin-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 35px;
+}
+
+.stat-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.01);
+  text-align: left;
+}
+
+.stat-icon {
+  font-size: 32px;
+  background: #f7fafc;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+}
+
+.stat-info h4 {
+  margin: 0 0 4px 0;
+  font-size: 13px;
+  color: #a0aec0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-info h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #2d3748;
+  font-weight: 700;
+}
+
+/* Section Form & Tabel */
+.admin-card-section {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+  text-align: left;
+}
+
+.admin-card-section h3 {
+  font-size: 18px;
+  margin: 0 0 20px 0;
+  color: #2d3748;
+  font-weight: 700;
+}
+
+/* Form Susunan Horizontal */
+.admin-form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.admin-form-row input,
+.admin-form-row select {
+  flex: 1;
+  min-width: 160px;
+  padding: 12px 15px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  background-color: #f7fafc;
+}
+
+.admin-form-row input:focus,
+.admin-form-row select:focus {
+  border-color: #319795;
+  background-color: #ffffff;
+}
+
+.admin-submit-btn {
+  background-color: #319795;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-submit-btn:hover {
+  background-color: #2c7a7b;
+}
+
+/* Custom Table Pengelolaan */
+.admin-table-custom {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.admin-table-custom th {
+  background-color: #f7fafc;
+  color: #4a5568;
+  padding: 14px;
+  font-weight: 600;
+  font-size: 14px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.admin-table-custom td {
+  padding: 14px;
+  font-size: 14px;
+  color: #4a5568;
+  border-bottom: 1px solid #edf2f7;
+}
+
+/* Badge Kategori */
+.admin-category-badge {
+  background-color: #e2e8f0;
+  color: #4a5568;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Tombol Aksi */
+.act-btn {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0 4px;
+}
+
+.btn-edit-style {
+  background-color: #feebc8;
+  color: #dd6b20;
+}
+
+.btn-edit-style:hover {
+  background-color: #fbd38d;
+}
+
+.btn-delete-style {
+  background-color: #fed7d7;
+  color: #e53e3e;
+}
+
+.btn-delete-style:hover {
+  background-color: #feb2b2;
+}
+
+/* Styling Tambahan Laporan Kurir di Sisi Admin */
+.admin-task-badge {
+  background-color: #edf2f7;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-family: monospace;
+  font-weight: 600;
+}
+
+.admin-courier-status {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-block;
+}
+
+.admin-courier-status.st-antar {
+  background-color: #feebc8;
+  color: #c05621;
+}
+
+.admin-courier-status.st-selesai {
+  background-color: #c6f6d5;
+  color: #22543d;
+}
+
+.admin-courier-status.st-standby {
+  background-color: #e2e8f0;
+  color: #4a5568;
+}
+
+/* ==========================================================
+   STYLING SEKSI INFORMASI & FOOTER BAWAH (MENU LIST)
+   ========================================================== */
+
+/* Seksi Informasi Jam & Alamat */
+.store-info-section {
+  background-color: #ffffff;
+  padding: 50px 8%;
+  border-top: 1px solid #edf2f7;
+}
+
+.info-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.info-box {
+  text-align: center;
+  padding: 20px;
+  background: #faf8f5;
+  border-radius: 16px;
+  transition: transform 0.2s ease;
+}
+
+.info-box:hover {
+  transform: translateY(-4px);
+}
+
+.info-icon {
+  font-size: 32px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.info-box h4 {
+  font-size: 16px;
+  color: #2d3748;
+  margin: 0 0 8px 0;
+  font-weight: 700;
+}
+
+.info-box p {
+  font-size: 14px;
+  color: #718096;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Footer Utama Blok Gelap Merah Maroon */
+.main-footer {
+  background-color: #5c1d24;
+  /* Menyesuaikan warna tema merah gelap bawaan navbar kamu */
+  color: #ffffff;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.footer-content h3 {
+  font-size: 20px;
+  margin: 0 0 10px 0;
+  letter-spacing: 1px;
+}
+
+.footer-content p {
+  font-size: 13px;
+  color: #e2e8f0;
+  max-width: 500px;
+  margin: 0 auto 20px auto;
+  opacity: 0.85;
+}
+
+.footer-divider {
+  width: 100%;
+  max-width: 800px;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.15);
+  margin: 0 auto 20px auto;
+}
+
+.copyright {
+  font-size: 12px !important;
+  color: #cbd5e0 !important;
+  margin: 0 !important;
+}
+
+/* ==========================================================
+   DESAIN FOOTER & INFORMASI TOKO VERSI UPGRADE PREMIUM
+   ========================================================== */
+
+/* Area Latar Belakang Kartu Informasi */
+.store-info-section {
+  background-color: #faf8f5;
+  /* Saling menyatu dengan warna dasar layout */
+  padding: 60px 8%;
+  border-top: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.info-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Desain Kartu Informasi Modern (Glassmorphism Touch) */
+.info-box-premium {
+  background: #ffffff;
+  border: 1px solid #edf2f7;
+  border-radius: 20px;
+  padding: 30px 25px;
+  text-align: center;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.015);
+  position: relative;
+}
+
+/* Lingkaran Pembungkus Ikon Emoji */
+.info-icon-wrapper {
+  font-size: 26px;
+  width: 60px;
+  height: 60px;
+  background-color: #fcf8f2;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 18px auto;
+  transition: all 0.3s ease;
+}
+
+.info-box-premium h4 {
+  font-size: 17px;
+  color: #1a202c;
+  margin: 0 0 10px 0;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.info-box-premium p {
+  font-size: 13.5px;
+  color: #718096;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* --- EFEK HOVER KARTU BERGERAK & MENYALA --- */
+.info-box-premium:hover {
+  transform: translateY(-8px);
+  /* Kartu terangkat ke atas secara halus */
+  box-shadow: 0 15px 30px rgba(92, 29, 36, 0.06);
+  /* Shadow menyala tipis mengikuti tone maroon */
+  border-color: rgba(92, 29, 36, 0.1);
+}
+
+.info-box-premium:hover .info-icon-wrapper {
+  background-color: #5c1d24;
+  /* Background lingkaran ikon berubah maroon saat disentuh */
+  transform: scale(1.05);
+  filter: brightness(1.5);
+}
+
+/* CONTAINER FOOTER BESAR (TEMA MAROON MEWAH) */
+.main-footer-premium {
+  background: linear-gradient(180deg, #5c1d24 0%, #421318 100%);
+  /* Gradasi maroon pekat */
+  color: #ffffff;
+  padding: 50px 8% 30px 8%;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-top-brand {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.footer-logo {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0 0 12px 0;
+  letter-spacing: 1.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-tagline {
+  font-size: 13.5px;
+  color: #e2e8f0;
+  max-width: 550px;
+  margin: 0 auto;
+  line-height: 1.6;
+  opacity: 0.8;
+}
+
+/* Garis Pembatas Tipis Elegan */
+.footer-premium-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0) 100%);
+  margin-bottom: 25px;
+}
+
+/* Baris Paling Bawah (Kiri-Kanan) */
+.footer-bottom-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.premium-copyright {
+  font-size: 12.5px !important;
+  color: #cbd5e0 !important;
+  margin: 0 !important;
+  opacity: 0.75;
+}
+
+/* Simulasi Tautan Sosial Media */
+.footer-social-sim {
+  display: flex;
+  gap: 20px;
+  font-size: 12.5px;
+  color: #cbd5e0;
+  opacity: 0.75;
+}
+
+.footer-social-sim span {
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.footer-social-sim span:hover {
+  color: #ff6600;
+  /* Menyala orange khas brand saat disorot */
+}
+
+/* Penyesuaian Responsif Layar Kecil (HP) */
+@media (max-width: 768px) {
+  .footer-bottom-bar {
+    flex-direction: column;
+    text-align: center;
+  }
+}
