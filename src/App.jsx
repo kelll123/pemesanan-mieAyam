@@ -51,6 +51,24 @@ function App() {
     }
   ]);
 
+  // --- FUNGSI BARU: MENANGKAP CHECKOUT PESANAN BARU DARI PELANGGAN ---
+  const handleCustomerCheckoutSubmit = (newOrderData) => {
+    const orderIdBaru = orders.length + 1;
+    const formatOrder = {
+      Id_pesanan: orderIdBaru,
+      Nama_pelanggan: newOrderData.Nama_pelanggan,
+      Alamat_pengiriman: newOrderData.Alamat_pengiriman,
+      No_hp: "082171835646", // Placeholder nomor HP simulasi pelanggan
+      Total_harga: newOrderData.Total_harga,
+      Status_pesanan: "DIPROSES", // Masuk dengan status DIPROSES agar langsung tampil di antrean tugas Admin
+      Id_kurir: null
+    };
+
+    // Push pesanan baru ke urutan paling atas di state orders
+    setOrders([formatOrder, ...orders]);
+    setCart([]); // Reset isi keranjang belanja setelah sukses checkout
+  };
+
   // Fungsi pengubah state pesanan saat Admin menugaskan kurir tertentu
   const handleAssignCourier = (orderId, courierId) => {
     setOrders(orders.map(order =>
@@ -126,8 +144,13 @@ function App() {
         )}
       </main>
 
+      {/* Menambahkan prop onCheckoutSubmit ke CartSidebar */}
       {cart.length > 0 && view === "home" && (
-        <CartSidebar cart={cart} updateCartQty={updateCartQty} />
+        <CartSidebar 
+          cart={cart} 
+          updateCartQty={updateCartQty} 
+          onCheckoutSubmit={handleCustomerCheckoutSubmit} 
+        />
       )}
     </div>
   );

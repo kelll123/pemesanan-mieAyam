@@ -65,8 +65,18 @@ export default function MenuList({ search, category, setCategory, addToCart, men
 
   return (
     <>
-      {/* 1. SEKSI BANNER HERO UTAMA */}
-      <header className="hero">
+      {/* 1. SEKSI HERO BANNER (KUNCI LAYAR PENUH) */}
+      <header 
+        className="hero" 
+        style={{ 
+          height: "calc(100vh - 80px)", 
+          display: "flex", 
+          alignItems: "center",
+          boxSizing: "border-box",
+          margin: 0,
+          overflow: "hidden"
+        }}
+      >
         <div className="hero-content">
           <span className="badge-promo">Homemade & Tanpa Pengawet</span>
           <h1>ENJOY OUR DELICIOUS <br /> <span>MIE AYAM SPECIAL</span></h1>
@@ -91,16 +101,16 @@ export default function MenuList({ search, category, setCategory, addToCart, men
         </div>
       </header>
 
-      {/* ==================== 2. SEKSI PROFIL WARUNG KULINER (Sesuai image_61ff24.jpg) ==================== */}
-      <section className="about-address-container" style={{ padding: "80px var(--padding-side) 60px", backgroundColor: "#ffffff", textAlign: "center" }}>
-        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-          <span style={{ color: "#c8102e", fontWeight: "700", fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "2px", display: "block", marginBottom: "8px" }}>
+      {/* 2. SEKSI PROFIL WARUNG KULINER */}
+      <section className="about-address-container" style={{ padding: "90px var(--padding-side) 70px", backgroundColor: "#ffffff", textAlign: "center" }}>
+        <div style={{ maxWidth: "750px", margin: "0 auto" }}>
+          <span style={{ color: "#c8102e", fontWeight: "700", fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "2px", display: "block", marginBottom: "12px" }}>
             PROFIL WARUNG KULINER
           </span>
-          <h2 style={{ fontSize: "2.6rem", fontWeight: "800", margin: "0 0 20px 0", color: "#1a1a1a", letterSpacing: "-0.5px" }}>
+          <h2 style={{ fontSize: "2.4rem", fontWeight: "800", margin: "0 0 24px 0", color: "#1a1a1a", letterSpacing: "-0.5px" }}>
             Warisan Rasa Kuliner Niki Eco 602
           </h2>
-          <p style={{ color: "#4a5568", lineHeight: "1.8", fontSize: "1.05rem", margin: 0, fontWeight: "400" }}>
+          <p style={{ color: "#4a5568", lineHeight: "1.9", fontSize: "1.05rem", margin: 0, fontWeight: "400", textAlign: "justify", textJustify: "inter-word" }}>
             Berdiri sejak tahun 2005 di Pekanbaru, <strong style={{ color: "#1a1a1a" }}>NIKI ECO 602</strong> berkomitmen tinggi untuk menyajikan kelezatan sehat bagi para penikmat kuliner. 
             Setiap lembaran produk <strong style={{ color: "#1a1a1a" }}>Mie Ayam Pangsit</strong> basah diolah sendiri secara mandiri (*homemade*) menggunakan resep rahasia keluarga tanpa tambahan zat pewarna sintetik maupun pengawet buatan. 
             Didukung oleh surat izin resmi dari Dinas Kesehatan (P-IRT), kami menjamin keamanan, kebersihan, dan mutu otentik yang khas di setiap mangkuk yang kami hidangkan.
@@ -108,41 +118,42 @@ export default function MenuList({ search, category, setCategory, addToCart, men
         </div>
       </section>
 
-      {/* ==================== 3. SEKSI MENU TERLARIS MINGGU INI (Sesuai image_61ff24.jpg) ==================== */}
-      <section style={{ padding: "40px var(--padding-side) 80px", backgroundColor: "#faf8f5" }}>
-        <div style={{ textAlign: "center", marginBottom: "50px" }}>
-          <span style={{ color: "#c8102e", fontSize: "0.9rem", fontWeight: "700", display: "inline-flex", alignItems: "center", gap: "6px" }}>
+      {/* ==================== 3. SEKSI MENU TERLARIS MINGGU INI (RAMAI & INTERAKTIF) ==================== */}
+      <section style={{ padding: "60px var(--padding-side) 90px", backgroundColor: "#faf8f5", borderTop: "1px solid #f1f1f5" }}>
+        <div style={{ textAlign: "center", marginBottom: "45px" }}>
+          <span style={{ color: "#c8102e", fontSize: "0.85rem", fontWeight: "700", display: "inline-flex", alignItems: "center", gap: "6px", textTransform: "uppercase", letterSpacing: "1px" }}>
             🔥 Rekomendasi Teratas
           </span>
-          <h2 style={{ fontSize: "2.6rem", fontWeight: "800", marginTop: "10px", marginBottom: "10px", color: "#1a1a1a", letterSpacing: "-0.5px" }}>
+          <h2 style={{ fontSize: "2.4rem", fontWeight: "800", marginTop: "10px", marginBottom: "12px", color: "#1a1a1a", letterSpacing: "-0.5px" }}>
             Menu Terlaris Minggu Ini
           </h2>
-          <p style={{ color: "#718096", fontSize: "1.05rem", margin: 0 }}>
+          <p style={{ color: "#718096", fontSize: "1rem", margin: 0 }}>
             Cicipi menu favorit pilihan utama para pelanggan setia kami.
           </p>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "35px", maxWidth: "1200px", margin: "0 auto" }}>
+        {/* Grid Container Kartu Menu */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "30px", maxWidth: "1200px", margin: "0 auto" }}>
           {bestSellerItems.map((item, index) => (
             <div 
               key={item.id || item.Id_menu || index} 
-              className="best-seller-card"
+              className="best-seller-card text-card-decor"
               style={{ 
                 background: "#ffffff", 
                 borderRadius: "20px", 
                 padding: "24px", 
-                boxShadow: "0 10px 30px rgba(0,0,0,0.04)", 
+                boxShadow: "0 10px 30px rgba(200, 16, 46, 0.04)", 
                 position: "relative", 
                 display: "flex", 
                 flexDirection: "column", 
                 justifyContent: "space-between",
-                transition: "transform 0.3s ease, boxShadow 0.3s ease",
-                border: "1px solid #f1f1f5"
+                border: "2px solid #f1e1df",
+                overflow: "hidden"
               }}
             >
-              {/* Badge Rank Favorit */}
+              {/* Badge Kiri Atas: Urutan Terlaris */}
               <span style={{ 
-                position: "absolute", top: "20px", left: "20px", 
+                position: "absolute", top: "15px", left: "15px", 
                 background: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)", 
                 color: "#ffffff", padding: "6px 14px", borderRadius: "30px", 
                 fontSize: "0.75rem", fontWeight: "800", zIndex: 2,
@@ -152,30 +163,42 @@ export default function MenuList({ search, category, setCategory, addToCart, men
                 ⭐ FAVORIT #{index + 1}
               </span>
 
+              {/* Badge Kanan Atas: Atribut Status Tambahan */}
+              <span style={{ 
+                position: "absolute", top: "15px", right: "15px", 
+                background: index === 0 ? "#fff5f5" : "#f0fdf4", 
+                color: index === 0 ? "#c8102e" : "#166534", 
+                padding: "4px 12px", borderRadius: "20px", 
+                fontSize: "0.7rem", fontWeight: "700", zIndex: 2,
+                border: index === 0 ? "1px solid #feb2b2" : "1px solid #bbf7d0"
+              }}>
+                {index === 0 ? "🔥 Terlaris" : index === 1 ? "⏱️ Cepat Saji" : "👍 Rekomendasi"}
+              </span>
+
               <div>
-                {/* Pembungkus Gambar */}
-                <div style={{ width: "100%", height: "210px", borderRadius: "14px", overflow: "hidden", marginBottom: "20px" }}>
+                {/* Frame Gambar Menu dengan Efek Hover Zoom */}
+                <div style={{ width: "100%", height: "210px", borderRadius: "14px", overflow: "hidden", marginBottom: "20px", backgroundColor: "#f7fafc" }} className="card-img-wrapper">
                   <img 
                     src={item.image || item.Gambar || "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400"} 
                     alt={item.name || item.Nama_menu} 
-                    style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease" }} 
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }} 
                   />
                 </div>
                 
-                {/* Informasi Judul & Teks */}
-                <h4 style={{ fontSize: "1.35rem", fontWeight: "800", color: "#1a1a1a", margin: "0 0 8px 0" }}>
+                {/* Detail Teks Judul & Informasi */}
+                <h4 style={{ fontSize: "1.4rem", fontWeight: "800", color: "#1a1a1a", margin: "0 0 10px 0" }}>
                   {item.name || item.Nama_menu}
                 </h4>
-                <p style={{ fontSize: "0.92rem", color: "#4a5568", lineHeight: "1.6", marginBottom: "25px" }}>
+                <p style={{ fontSize: "0.92rem", color: "#64748b", lineHeight: "1.6", marginBottom: "25px" }}>
                   {item.description || "Sajian mie segar berkualitas premium dipadukan kuah kaldu ayam gurih alami khas racikan rahasia Niki Eco 602."}
                 </p>
               </div>
 
-              {/* Garis Aksi Bawah */}
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderTop: "1px dashed #e2e8f0", paddingTop: "20px" }}>
+              {/* Seksi Harga dan Tombol Beli yang Lebih Ramai */}
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderTop: "1px dashed #e2e8f0", paddingTop: "20px", marginTop: "auto" }}>
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                  <span style={{ fontSize: "0.8rem", color: "#a0aec0", fontWeight: "600", marginBottom: "2px" }}>Harga</span>
-                  <span style={{ fontWeight: "800", color: "#c8102e", fontSize: "1.4rem" }}>
+                  <span style={{ fontSize: "0.8rem", color: "#94a3b8", fontWeight: "600", marginBottom: "2px" }}>Harga Seporsi</span>
+                  <span style={{ fontWeight: "800", color: "#c8102e", fontSize: "1.45rem" }}>
                     Rp {(item.price || item.Harga || 0).toLocaleString("id-ID")}
                   </span>
                 </div>
@@ -183,11 +206,12 @@ export default function MenuList({ search, category, setCategory, addToCart, men
                   className="add-to-cart" 
                   style={{ 
                     margin: 0, padding: "12px 24px", fontSize: "0.9rem", fontWeight: "700",
-                    borderRadius: "12px", boxShadow: "0 4px 12px rgba(200, 16, 46, 0.15)"
+                    borderRadius: "12px", boxShadow: "0 4px 12px rgba(200, 16, 46, 0.15)",
+                    display: "flex", alignItems: "center", gap: "8px", cursor: "pointer"
                   }} 
                   onClick={() => addToCart(item)}
                 >
-                  + Tambah
+                  🛒 + Tambah
                 </button>
               </div>
             </div>
@@ -251,7 +275,7 @@ export default function MenuList({ search, category, setCategory, addToCart, men
           <div className="info-box-premium">
             <div className="info-icon-wrapper">📞</div>
             <h4>Kontak & Pesanan</h4>
-            <p>WhatsApp: +62 812-3456-7890</p>
+            <p>WhatsApp: +62 881-0805-79585</p>
           </div>
         </div>
       </section>
