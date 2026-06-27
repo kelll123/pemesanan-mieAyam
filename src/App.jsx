@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 
 // Import Komponen Modular
@@ -7,15 +7,69 @@ import CartSidebar from "./components/CartSidebar";
 import MenuList from "./pages/customer/MenuList";
 import About from "./pages/customer/About";
 import Documentation from "./pages/customer/Documentation";
+import Login from "./pages/auth/Login";
+import Gallery from "./pages/customer/Gallery"; // Import komponen Galeri baru
+
+// Import Komponen Admin & Kurir
 import MenuManagement from "./pages/admin/MenuManagement";
 import DeliveryList from "./pages/courier/DeliveryList";
-import Login from "./pages/auth/Login";
+
+// Import data json lokal sebagai data awal default aplikasi jika storage kosong
+import menuData from "./assets/menu.json";
 
 function App() {
   const [cart, setCart] = useState([]);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("Semua");
-  const [view, setView] = useState("home"); // "home", "about", "documentation", "admin", "kurir", "login"
+  const [view, setView] = useState("home");
+  const [user, setUser] = useState(null);
+
+  // --- STATE MENU GLOBAL DENGAN LOCALSTORAGE (ANTI-REFRESH HILANG) ---
+  const [globalMenu, setGlobalMenu] = useState(() => {
+    const savedMenu = localStorage.getItem("niki_eco_menu");
+    if (savedMenu) {
+      return JSON.parse(savedMenu); // Gunakan data dari storage jika ada
+    }
+    return menuData.food_items || []; // Cadangan awal jika storage kosong
+  });
+
+  // Otomatis simpan ke localStorage setiap kali ada perubahan pada data menu
+  useEffect(() => {
+    localStorage.setItem("niki_eco_menu", JSON.stringify(globalMenu));
+  }, [globalMenu]);
+
+  // --- STATE ORDERS ---
+  const [orders, setOrders] = useState([
+    {
+      Id_pesanan: 1,
+      Nama_pelanggan: "Budi Santoso",
+      Alamat_pengiriman: "Jl. Merdeka No. 12, Padang",
+      No_hp: "082171835646",
+      Total_harga: 48000.00,
+      Status_pesanan: "DIPROSES",
+      Id_kurir: null
+    }
+  ]);
+
+  // Fungsi pengubah state pesanan saat Admin menugaskan kurir tertentu
+  const handleAssignCourier = (orderId, courierId) => {
+    setOrders(orders.map(order =>
+      order.Id_pesanan === orderId
+        ? { ...order, Id_kurir: parseInt(courierId), Status_pesanan: "DIKIRIM" }
+        : order
+    ));
+    alert("Kurir berhasil ditugaskan!");
+  };
+
+  // Fungsi pengubah state pesanan saat Kurir menyelesaikan pengantaran
+  const handleCompleteDelivery = (orderId) => {
+    setOrders(orders.map(order =>
+      order.Id_pesanan === orderId
+        ? { ...order, Status_pesanan: "SELESAI" }
+        : order
+    ));
+    alert("Pesanan telah selesai diantarkan!");
+  };
 
   const addToCart = (item) => {
     const itemId = item.id || item.Id_menu;
@@ -34,7 +88,8 @@ function App() {
 
   return (
     <div className="app-container fade-in">
-      <Navbar view={view} setView={setView} setSearch={setSearch} />
+      {/* Navbar menerima prop user dan setUser untuk mengontrol alur login */}
+      <Navbar view={view} setView={setView} setSearch={setSearch} user={user} setUser={setUser} />
 
       <main>
         {view === "home" && (
@@ -43,13 +98,32 @@ function App() {
             category={category}
             setCategory={setCategory}
             addToCart={addToCart}
+            menu={globalMenu}
           />
         )}
         {view === "about" && <About />}
         {view === "documentation" && <Documentation setView={setView} />}
-        {view === "login" && <Login setView={setView} />}
-        {view === "admin" && <MenuManagement menu={[]} setMenu={() => { }} setView={setView} />}
-        {view === "kurir" && <DeliveryList />}
+        {view === "gallery" && <Gallery setView={setView} />} {/* Render komponen Galeri */}
+        {view === "login" && <Login setView={setView} setUser={setUser} />}
+
+        {view === "admin" && (
+          <MenuManagement
+            orders={orders}
+            onAssignCourier={handleAssignCourier}
+            setView={setView}
+            globalMenu={globalMenu}
+            setGlobalMenu={setGlobalMenu}
+          />
+        )}
+
+        {view === "kurir" && (
+          <DeliveryList
+            orders={orders}
+            currentUser={user}
+            onCompleteDelivery={handleCompleteDelivery}
+            setView={setView}
+          />
+        )}
       </main>
 
       {cart.length > 0 && view === "home" && (

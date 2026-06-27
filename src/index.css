@@ -10,3 +10,28 @@ body {
   background-color: var(--bg-cream);
   color: var(--text-dark);
 }
+
+/* --- STYLING GOOGLE MAPS DI HALAMAN ABOUT --- */
+.map-wrapper {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: var(--radius-lg); /* Mengikuti kelengkungan layout tokomu */
+  overflow: hidden;
+  box-shadow: var(--shadow-md); /* Memberikan bayangan lembut premium */
+  border: 6px solid #ffffff; /* Bingkai putih tebal estetik ala mockup */
+}
+
+.google-map-iframe {
+  width: 100%;
+  height: 400px; /* Tinggi peta yang pas di layar laptop */
+  border: none;
+  display: block;
+}
+
+/* Responsif jika dibuka di HP agar tinggi petanya mengecil pas */
+@media (max-width: 768px) {
+  .google-map-iframe {
+    height: 280px;
+  }
+}
